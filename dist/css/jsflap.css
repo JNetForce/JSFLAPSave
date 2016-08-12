@@ -1,0 +1,503 @@
+/** COLORS **/
+
+.bg-color-valid {
+    background-color: #26A65B;
+}
+
+.bg-color-invalid {
+    background-color: #C3272B;
+}
+
+.bg-color-gray1 {
+    background-color: #AAA;
+}
+
+/** FOUNDATION OVERRIDES **/
+.row.full { width: 100%; max-width: 100%; }
+.row.full>.column:first-child,
+.row.full>.columns:first-child { padding-left: 0; }
+.row.full>.column:last-child,
+.row.full>.columns:last-child { padding-right: 0; }
+
+.fade {
+    opacity: 0;
+    -webkit-transition: opacity .15s linear;
+    transition: opacity .15s linear;
+}
+.fade.in {
+    opacity: 1;
+}
+
+.reveal-modal.fade {
+    -webkit-transition: -webkit-transform .3s ease-out;
+    -moz-transition:    -moz-transform .3s ease-out;
+    -o-transition:      -o-transform .3s ease-out;
+    transition:         transform .3s ease-out;
+    -webkit-transform: translate(0, -25%);
+    -ms-transform: translate(0, -25%);
+    transform: translate(0, -25%);
+}
+.reveal-modal.in {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+
+.reveal-modal-bg.fade {
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+.reveal-modal-bg.in {
+    filter: alpha(opacity=50);
+    opacity: .5;
+}
+
+/** LAYOUT OVERRIDES **/
+html, body {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.main-row, .main-row .columns {
+    height: 100%;
+    height: calc(100% - 45px);
+}
+
+.top-bar-section ul.center {
+    margin: 0 auto;
+    float: none;
+    max-width: 20%;
+    min-width: 265px;
+    display: block;
+}
+
+.tabs {
+    background-color: #333;
+}
+
+.tabs dd > a {
+    padding: .625rem 1rem;
+    background-color: #333;
+    color: #eee;
+} 
+
+.tabs dd > a:hover {
+    padding: .625rem 1rem;
+    background-color: #444;
+    color: #eee;
+} 
+
+.tabs dd.active a {
+    background-color: #008CBA;
+    color: #eee;
+} 
+
+.tabs dd.active a:hover {
+    background-color: #00a1d6;
+    color: #eee;
+} 
+
+.tabs-content>.content {
+    padding: 0;
+} 
+
+.f-dropdown li.active {
+    background-color: #DCDCDC;
+}
+
+.button-group button {
+    margin-bottom: 0;
+}
+
+section.board-container {
+    position: absolute;
+    top: 0px;
+    bottom:0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 80%;
+}
+
+section.board-sidebar {
+    width: 20%;
+    height: calc(100% + 45px);
+    margin-top:-45px;
+    overflow-y: auto;
+    position: absolute;
+    left: 80%;
+    top: 0;
+    bottom: 0;
+    background-color: #F5F5F5;
+    box-sizing: border-box;
+    border-left: 5px solid #444;
+}
+
+.top-bar .graph-title {
+    padding: 0;
+}
+
+.top-bar li > a {
+    transition: background-color .25s;
+}
+
+.top-bar li > a kbd {
+    background-color: transparent;
+    font-size: smaller;
+    color: #EEE;
+    border: none;
+}
+
+.top-bar li > a.disabled {
+    color: #BBB !important;
+}
+
+.top-bar li:not(.active) > a:hover {
+    background-color: #444 !important;
+}
+
+.top-bar li:not(.active) > a.disabled:hover {
+    background-color: #333 !important;
+    color: #BBB;
+    cursor: default;
+}
+
+.top-bar .graph-title > input {
+    background-color: #444;
+    color: #FFF;
+    border: none;
+    box-shadow: none;
+    top: 0;
+    height: 2.8125rem;
+    width: 100%;
+}
+
+.top-bar .graph-title > input:focus {
+    background-color: #555;
+}
+
+.mode_selectors.icon-bar.vertical {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .3;
+    transition: opacity 250ms;
+    height: 120px;
+    z-index: 2;
+}
+
+.mode_selectors.icon-bar > * {
+    padding: .75rem;
+    transition: background-color 250ms;
+}
+
+.mode_selectors.icon-bar > a:not(.active):hover {
+    background-color: #444;
+}
+
+.mode_selectors.icon-bar > a.active:hover {
+    background-color: #00a1d6;
+}
+
+.mode_selectors.icon-bar > a i {
+    font-size: 1rem;
+}
+
+.mode_selectors.icon-bar.vertical:hover {
+    opacity: 1;
+}
+
+@media (max-width: 1366px) {
+    section.board-container {
+        width: 70%;
+    }
+
+    section.board-sidebar {
+        left: 70%;
+        width: 30%;
+    }
+}
+
+@media (max-width: 956px) {
+    section.board-container {
+        width: 60%;
+    }
+
+    section.board-sidebar {
+        left: 60%;
+        width: 40%;
+    }
+}
+
+@media (max-width: 768px) {
+    html, body {
+        min-height: 100%;
+        height: auto;
+        overflow-y: visible;
+    }
+    
+    .top-bar li > a kbd {
+        display: none;
+    }
+
+    .top-bar-section .center {
+        margin: 0 0;
+        float: left !important;
+        width: 100% !important;
+    }
+
+    .main-row, .main-row > .columns {
+        height: 400px;
+    }
+
+    section.board-container {
+        width: 100%;
+        position: static;
+        height: 100%;
+    }
+
+    section.board-sidebar {
+        height: auto;
+        overflow: visible;
+        width: 100%;
+        position: static;
+    }
+}
+
+div.main-row {
+    position: relative;
+}
+
+.text-heading {
+    padding: 10px 5px;
+    background-color: #008CBA;
+    color: #fff;
+    text-align: center;
+   
+}
+
+.text-subheading-flush {
+    border-top: 1px solid rgba(255, 255, 255, .5);
+    margin-top: -1px;
+    text-align: center;
+}
+
+.text-subheading {
+    border-top: 1px solid rgba(255, 255, 255, .5);
+    margin-top: -1px;
+    text-align: center;
+    padding: 3px;
+    background-color: #444;
+    color: #EEE;
+}
+
+.text-subheading-status {
+    padding: 5px;
+    color: #fff;
+    transition: background-color .25s;
+}
+
+.text-footer {
+    padding: 5px;
+    text-align: center;
+}
+
+section.board-sidebar input {
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    border-top: 1px solid rgba(255, 255, 255, .5);
+    background-color: #f9f9f9;
+    transition: background-color .25s;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+section.board-sidebar .testInputInfo {
+    padding: 3px;
+    overflow-x: auto;
+    width: 100%;
+}
+
+section.board-sidebar input:focus {
+    box-shadow: none;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, .5);
+    background-color: #F3F3F3;
+}
+
+section.board-sidebar .accepted, section.board-sidebar .accepted input {
+    background-color: #26A65B;
+    color: #fff;
+}
+
+section.board-sidebar .rejected, section.board-sidebar .rejected input {
+    background-color: #C3272B;
+    color: #fff;
+}
+
+section.board-sidebar .newTestInput {
+    padding: 8px 8px;
+    color: #AAA;
+    font-size: 14px;
+    display: block;
+    background-color: #f9f9f9;
+    cursor: default;
+}
+
+/** SVG STYLES **/
+svg[jsflap-board], svg[jsflap-board] > * {
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: 100%;
+}
+
+svg[jsflap-board] text.transition {
+    stroke: #FFF;
+    stroke-width: 5px;
+    paint-order: stroke;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    dominant-baseline: middle;
+    letter-spacing: .2rem;
+}
+
+svg[jsflap-board] input.editTransition {
+    font-size: 12px;
+    border: 0 solid #333;
+    text-align: center;
+    box-shadow: none;
+    border-radius: 100%;
+}
+
+svg[jsflap-board] path.edge {
+    fill: transparent;
+    shape-rendering: auto;
+}
+
+svg[jsflap-board] path.edge.rightAngle {
+    shape-rendering: crispEdges;
+}
+
+/*svg[jsflap-board] #markerArrow {*/
+    /*shape-rendering: geometricPrecision !important;*/
+/*}*/
+
+
+svg[jsflap-board] input:focus {
+    box-shadow: none;
+}
+
+/** SVG THEMES **/
+/** SVG THEMES: Default **/
+body.mode_0 svg[jsflap-board] > * {
+    cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAACRUlEQVRIS73Wv6vaUBQH8K9RXKyL0FUlBafHW+o/IFWoOIiTKF0cOzjoosmiOEgRRPAHYiQOljcIdWjRQWxxyChdfJ0c+heIqFAUQS1X8JGY5Gn0PTPfez4559ycGx1u/Ohu7OGlQBOADwDeABgB+KOWyEuAdovFUs3n8x8dDgcajQZ4nncD+KWEXgvaaZr+Xq/X710uF3Q6HWazGVKpFIrFoiJ6DSjDDhnN53Nks1nkcjkZeiloB/DN6/W+r1arsNlssuqpoZeA+8xqtdr9ZrNBpVJBqVRSRKfTKRiG+ctx3LvDG2kFJWUkQfr9PsrlsiK6XC6RTqdJaZ8cLaAEWywWGI/HcDqdiuhut8NwOEQymXwYDAaftGYow3q9Hnw+39ZkMlEkuDhTq9WK0WiEaDT6QxCEMIB/WkAJRg5Dp9NBIBDYY4dAYjQSiaBQKMgwsvZUSc/CDuh2u0Wr1UI4HP4K4LM4s3My1ISRDNXKKP5m1DJ8FUytpK+GKYGy09jtduH3+yUHRHxQzimjWknf0jT98zCIV6sV9Ho9KIqCwWCQja5ze3a8UdzDu0wm85hIJDCZTMCyLDweD0Kh0I6iKEmvL8WOS/oECoIAt9v922w274ezGL0GUwVJ0PV6jWazSYYvOI5DMBjcke9Wa89OlpRhmK3BYNhPEJ7n0W63QbJ8blxp+S+S9VAMXnMaz/mnuWNZ9jEej8NoNErWk1shFospzkYt2R33kNzicZUAcwBflGbjNaDWvRetP3VbXBT0uU03B/8DMSOQLB+pco4AAAAASUVORK5CYII=") 2 24, default;
+}
+
+body.mode_1 svg[jsflap-board] > * {
+    cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAADIElEQVRIS7WWP0gbURzHv5dTUCyKELMV0tpAUTtIhxo6dkqHdgqlV1LlwNQmprhEo/gnRjFqFmk0aRN6xIZmcWqHOnUssUNxsCcFawl0SwWJWBT0cuUdObmcp3fX6hvfe7/f5/3e7/t9dxTMjwYA9yphnwD8MZOCMrMZQIPVak3FYjGGxAWDwdzOzo7XDNQMUIJlMhnG5XKJBLi6ukr19PSYghoFVsEsFosUVy6XRbNQQ0Cr1ZrLZDKPSWUyTG6FCvpEr0VGgB0LCwsb/f39oGlaM58gCFhcXMTAwMAtAN/OgxoBtrjd7nwgEGhtamqC3W5HY2OjlHNvbw+FQgGlUgnxeHx7ZWXFCeD3/wJJvB3AXQAMz/P329rapJybm5tob2//CCAH4DOAwr9cKfHZcwBXAXwAQLwmj5c8zwdUwDiAF4o9xKMPAPwCkFRbRn2lkho5jmM6OzsxMTEBjuOuKIL0gA0sy+5PTk5ifX0dLMuesowSWCV9or5oNGoZHx9/CGC7UsEgz/NPVRW+BTBfWW+NRCLvh4eHy0TNWpaRgad8JgiCkEql6Hw+X9WWsbExOBwOaW5rawtTU1NV606nE16vV6BpmtbyqQS02WxJjuP6tHymJwK9dRnKsmyyWCz6JCDDMGIikQCR/WUMYhufz4dcLkfJV/osnU6/6u7uFmtra4140/C5jo6OxOXlZaq3t7cPwGtl8mA6nZ6XoRfRQwVsEECMnFJdzQmUoiilSn8qVOpRqTSrUOl1WaWiKFKVyk5gWkAyF1xaWprv6urC7Owsea5umDG+2+3+EQqFWtfW1uD3+6tgZwHJPHn1bwJ4o3qu9IxPYjsAPALwHcA7dbONCuQOETN5T3mev6260q+Vd5S8p1/01GQE2OLxeIrT09Nobm5GfX09ampqpLzHx8c4ODjA7u4uRkdHkc1mbRfxtegIh8MbQ0NDqKur0yzg8PAQc3NzCIfD1/S+GEYqlISktIySqiX9867VKFATahZ2nkrPOuRJpWSDls8uQjTqHMGRkRHpczQzM3PKZ5cBJDmVf956jKp1Mz00lfiszX8BygajLFetmzsAAAAASUVORK5CYII=") 12 12, move;
+}
+
+body.mode_2 svg[jsflap-board] > * {
+    cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAACnUlEQVRIS+3VT0iaYRwH8G/vQoX0ou5iHjoKiyAk2U5j5GGCBB1LI/BQL+VKfJcjbCf/hB6Cdqh3BuIbxAh3MFnsULKDF4eXeOk6jFGgTkSIoRdxPJZhob7vWyMY7IH39Pz5vM/veb/P24dHbn2P7OGfAgcADImsUBHALzL2PjskUHBsbGzJYDCI8srlMg4PD3cBvL0P6IvFYms2mw39/f2iwEajgZOTEzAMsyUVXAkEAmGGYRpyuVzS3MvLSywuLkoq6QRN0wfhcLiuUqmeiNpa26BcLgePxxMX+5bjdrv9OBQKQafTSbVQLBYRDAZ/bm5uvhQDDlksllwkEoFer5eMVSoVrK6ugmXZ5wC+C4FDRqPxSzQafTYyMiIZq9Vq2NjYgNfrNQNICcViQK1Wf97f339tNpsbUiNUr9ext7eH2dlZGsDH1tt22+GAVquNsCw7PTk52aAoSqgSt3ZPsEQigeXl5fcXFxf+9s5uC/k4jluz2+2SMZK5VCqFqampT6VSafruOXQCm1lzu91QKBSSz43neTidzmQ6nSbYbyGwmbX19fUmtrOzg2w22xOlKAoLCwswmUw4Pz+H2+3+EY/HX7Tuzl7guMPhOCaYRqNpHbgHwNce4i7HcaPkmisUCvD7/Wfb29uvAJx1m9Mq6U3WBgcHm2cwMzMTzufz73pgN6Unn3971nqVhIBPjUbjt1bWhM7gerH5QCDAknMm7W7WhMCVZDIZtlqtOD09xdzcHDKZDPmVVLpNpGl6iZRepVJ1zJoQ+IHn+TfDw8OoVqsgGRJqMpms+WvqljUhcMLn8x24XC4olUohq9lPsnZ0dASbzdYxa0Ig6Z+/fkZFiVeDyBe81SlrYkAJzsOGSrojH0Zdzf4P/o0q3lrjD7g6BHWnky74AAAAAElFTkSuQmCC") 2 24, crosshair;
+}
+
+svg[jsflap-board] circle.node {
+    fill: #008cba;
+    stroke: none;
+    transition: fill .3s, stroke .3s;
+}
+
+svg[jsflap-board] text.nodeLabel {
+    font-family: sans-serif;
+    font-size: 18px;
+    fill: #FFF;
+    transition: fill .3s, stroke .3s;
+}
+
+svg[jsflap-board] text.transition {
+    font-family: sans-serif;
+    font-size: 16px;
+    fill: #333;
+    text-anchor: middle;
+}
+
+svg[jsflap-board] path.initialPath {
+    fill: #333;
+    transition: fill .3s, stroke .3s;
+}
+
+svg[jsflap-board] circle.finalCircle {
+    stroke: #FFF;
+    stroke-width: 2;
+    fill: none;
+    transition: fill .3s, stroke .3s;
+}
+svg[jsflap-board] path.edge {
+    stroke: #333;
+    stroke-width: 1;
+    transition: fill .3s, stroke .3s;
+}
+
+svg[jsflap-board] circle.control {
+    fill: #AAA;
+    transition: fill .3s, stroke .3s;
+}
+
+/** SVG THEMES: Classic **/
+svg[jsflap-board].theme-classic circle.node {
+    fill: rgb(255, 255, 150);
+    stroke: #000;
+    stroke-width: 1;
+}
+
+svg[jsflap-board].theme-classic text.nodeLabel {
+    font-family: sans-serif;
+    font-size: 18px;
+    fill: #000;
+}
+
+svg[jsflap-board] text.transition {
+    font-family: sans-serif;
+    font-size: 16px;
+    fill: #000;
+    text-anchor: middle;
+}
+
+svg[jsflap-board].theme-classic path.initialPath {
+    fill: #FFF;
+    stroke: #000;
+    stroke-width: 1;
+}
+
+svg[jsflap-board].theme-classic circle.finalCircle {
+    stroke: #000;
+    stroke-width: 1;
+    fill: none;
+}
+
+svg[jsflap-board] path.edge {
+    stroke: #000;
+    stroke-width: 1;
+}
+
+svg[jsflap-board].theme-classic circle.control {
+    fill: #FFF;
+    stroke: #000;
+    stroke-width: 1;
+}
+/** CONTEXT MENU STYLES **/
+
+#contextMenu {
+    width: 120px;
+    height: 100px;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    background-color: #eee;
+    border: 1px solid #ddd;
+}

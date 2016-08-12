@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html ng-app="jsflap" ng-cloak="" ng-controller="AppController" jsflap-app>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title ng-bind-template="JSFLAP - {{graphMeta.title}}">JSFLAP</title>
+    <link rel="stylesheet" href="vendor/foundation-5.5.0/css/normalize.css">
+    <link rel="stylesheet" href="vendor/foundation-5.5.0/css/foundation.min.css">
+    <link href="vendor/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="dist/css/jsflap.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/highlight.js/9.4.0/highlight.min.js"></script>
+    <link rel="apple-touch-icon" href="/assets/icon_iphone.png">
+    
+    <style >
+        .inputfile {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: relative;
+            z-index: -1;
+        }
+        .inputfile + label {
+            font-size: 1.25em;
+            font-weight: 700;
+            color: white;
+            background-color: black;
+            display: inline-block;
+        }
+
+        .inputfile:focus + label,
+        .inputfile + label:hover {
+            background-color: red;
+        }
+    </style>
+</head>
+<body ng-class="'mode_' + board.state.mode">
+<top-bar role="navigation">
+    <ul class="title-area" tooltip-placement="bottom" tooltip-html-unsafe="<b>J</b>ava<b>S</b>cript <b>F</b>ormal <b>L</b>anguage and <b>A</b>utomatta <b>P</b>ackage, <i>inspired by JFLAP</i>">
+        <li class="name">
+            <h1><a href="#"><i class="fa fa-caret-right"></i><i class="fa fa-circle"></i> JSFLAP <small>beta</small></a></h1>
+        </li>
+        <li toggle-top-bar class="menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <top-bar-section>
+
+        <!-- Left Nav Section -->
+        <ul class="left">
+            <li has-dropdown>
+                <a href="#">File</a>
+                <ul top-bar-dropdown>
+                    <li><a href="/" target="_blank"><i class="fa fa-file fa-fw"></i> New</a></li>
+                    <!--<li has-dropdown>-->
+                        <!--<a href="#"><i class="fa fa-folder-open fa-fw"></i> Open...</a>-->
+                        <!--<ul top-bar-dropdown>-->
+                            <!--<li><a href="#">Coming Soon</a></li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+                    <li has-dropdown>
+                        <a href="#"><i class="fa fa-share-square-o fa-fw"></i> Export...</a>
+                        <ul top-bar-dropdown>
+                            <li><a ng-click="saveToImage()" href=""><i class="fa fa-picture-o fa-fw"></i> PNG Image</a></li>
+                            <li><a ng-click="saveToLaTeX()" href=""><i class="fa fa-file-code-o fa-fw"></i> LaTeX</a></li>
+                            <li><a ng-click="saveToAutomatonDefinition()" href=""><i class="fa fa-file-text-o fa-fw"></i> Automaton Definition</a></li>
+                            <li><a ng-click="saveToJSON()" href=""><i class="fa fa-file-text-o fa-fw"></i> JSON</a></li>
+                        </ul>
+                    </li>
+                    <li has-dropdown>
+                        <a href="#"><i class = "fa fa-upload fa-fw"></i> Import...</a>
+                        <ul top-bar-dropdown>
+                                <li>
+                                    <a onclick="$('#fileinput').click()" href="">
+                                    <i class = "fa fa-file-text-o fa-fw"></i> JSON</a>
+                                </li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+            </li>
+            <li has-dropdown>
+                <a href="#">Edit</a>
+                <ul top-bar-dropdown>
+                    <li><a ng-class="board.invocationStack.hasUndo()?'':'disabled'" href="#" ng-click="board.invocationStack.undo()"><i class="fa fa-undo"></i> Undo <kbd>CTRL/&#8984; + Z</kbd></a></li>
+                    <li><a ng-class="board.invocationStack.hasRedo()?'':'disabled'" href="#" ng-click="board.invocationStack.redo()"><i class="fa fa-undo fa-flip-horizontal"></i> Redo <kbd>CTRL/&#8984; + Y</kbd></a></li>
+                </ul>
+            </li>
+            <li has-dropdown>
+                <a href="#">Help</a>
+                <ul top-bar-dropdown>
+                    <li><a href="#" ng-click="openHelpModal()"><i class="fa fa-question-circle"></i> Help</a></li>
+                    <li><a target="_blank" href="https://github.com/bgrawi/jsflap/issues" title="Report a Bug"><i class="fa fa-bug"></i> Report a Bug</a></li>
+                </ul>
+            </li>
+            <!--
+            <li>
+
+            <form action='index.html' method="post" enctype="multipart/form-data">
+                <input id="myInput" type="file" style="visibility:hidden" accept=".json" onchange="javascript:this.form.submit"/>
+            </form>
+            <script type="text/javascript">
+                  function readSingleFile(evt) {
+                    //Retrieve the first (and only!) File from the FileList object
+                    var f = evt.target.files[0]; 
+
+                    if (f) {
+                      var r = new FileReader();
+                      r.onload = function(e) { 
+                          var contents = e.target.result;
+                        alert( "Got the file.\n" 
+                              +"name: " + f.name + "\n"
+                              +"type: " + f.type + "\n"
+                              +"size: " + f.size + " bytes\n"
+                              + "starts with: " + contents
+                        );  
+                      }
+                      r.readAsText(f);
+                    } else { 
+                      alert("Failed to load file");
+                    }
+                  }
+
+                document.getElementById('myInput').addEventListener('change', readSingleFile);
+            </script>
+            </li>
+            -->
+            <li>
+                <input type="file" id="fileinput" accept='.json' />
+                <script type="text/javascript">
+                  function readSingleFile(evt) {
+                    //Retrieve the first (and only!) File from the FileList object
+                    var f = evt.target.files[0]; 
+
+                    if (f) {
+                        var r = new FileReader();
+                        r.onload = function(e) { 
+                            alert("Hello")
+                            var contents = e.target.result;
+                            contents = contents.split('\n');
+                            for(var i = 0;i < contents.length;i++){
+                                var parseGraph = false;
+                                var parseNode = false;
+                                var parseEdge = false;
+                                if (contents[i].includes("Graph")) {
+                                    parseGraph = true;
+                                    alert("Graph");
+                                }
+                                if (parseGraph && contents[i].includes("Node") && !contents.includes("Edge")) {
+                                    parseNode = true;
+                                    alert("Node");
+                                }
+                                if (parseGraph && !contents[i].includes("Node") && contents.includes("Edge")) {
+                                    parseEdge = true;
+                                    alert("Edge");
+                                }
+                            }
+                        }
+                        r.readAsText(f);
+                    } else { 
+                        alert("Failed to load file");
+                    }
+                  }
+                document.getElementById('fileinput').addEventListener('change', readSingleFile);
+                </script>
+            </li>
+        </ul>
+    </top-bar-section>
+</top-bar>
+<div class="full main-row">
+    <div class="icon-bar vertical three-up mode_selectors">
+        <a href="#" ng-click="board.setMode(0)" class="item mode_selector" ng-class="(board.state.mode === 0)?'active':''" tooltip-placement="right"  tooltip-append-to-body="true" tooltip-popup-delay="1000" tooltip="Pencil tool: Click to create nodes, drag to create edges"><i class="fa fa-pencil"></i></a></li>
+        <a href="#" ng-click="board.setMode(1)" class="item mode_selector" ng-class="(board.state.mode === 1)?'active':''" tooltip-placement="right"  tooltip-append-to-body="true" tooltip-popup-delay="1000" tooltip="Move tool: Move nodes, control points, or the board around"><i class="fa fa-arrows"></i></a></li>
+        <a href="#"  ng-click="board.setMode(2)" class="item mode_selector" ng-class="(board.state.mode === 2)?'active':''" tooltip-placement="right" tooltip-append-to-body="true" tooltip-popup-delay="1000" tooltip="Eraser tool: Erase nodes, edges, or transitions when activated"><i class="fa fa-eraser"></i></a></li>
+    </div>
+    <section class="board-container" jsflap-board-container>
+        <svg tabindex="0" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" ng-class="'theme-' + board.settings.theme" jsflap-board>
+            <marker id="markerArrow" markerWidth="13" markerHeight="13" refx="8" refy="7"
+                    orient="auto">
+                <path class="markerArrow" d="M2,2 L2,13 L8,7 L2,2" style="fill: #000000; shape-rendering: optimizeSpeed !important;"></path>
+            </marker>
+            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#DDDDDD" stroke-width="1"/>
+            </pattern>
+            <g class="background"></g>
+            <g class="items">
+                <g class="nodes"></g>
+                <g class="edges"></g>
+                <g class="transitions"></g>
+                <g class="control-points"></g>
+            </g>
+        </svg>
+    </section>
+    <section class="board-sidebar">
+        <tabset>
+            <tab>
+                <tab-heading tooltip="Graph Settings" tooltip-placement="bottom" tooltip-append-to-body="true">
+                    <i class="fa fa-cog"></i>
+                </tab-heading>
+                <div class="text-heading">
+                    Graph Settings
+                </div>
+                <div class="text-subheading">
+                    Graph Title and Type
+                </div>
+                <input ng-model="graphMeta.title" type="text">
+                <ul class="button-group even-2">
+                    <li>
+                        <button type="button" class="small button secondary" ng-model="graph.deterministic" btn-checkbox>
+                            <i class="fa fa-fw" ng-class="{'fa-check-square': graph.deterministic, 'fa-square-o': !graph.deterministic}"></i> Deterministic
+                        </button>
+                    </li>
+                    <li>
+                        <button type="button" class="small button secondary dropdown" dropdown-toggle="#graph-settings-type">
+                            {{graphMeta.type == 'FA'? 'Finite Automatta': 'Turing Machine'}}
+                        </button>
+                        <ul id="graph-settings-type" class="f-dropdown">
+                            <li ng-repeat="(type, displayType) in availableTypes"><a href="#" ng-click="graphMeta.type = type">{{displayType}}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="text-subheading">
+                    Display Options
+                </div>
+                <ul class="stack even-1 button-group">
+                    <li>
+                        <button type="button" class="small button expand secondary dropdown" dropdown-toggle="#graph-settings-themes">
+                            <i class="fa fa-paint-brush"></i> Theme</a>
+                        </button>
+                        <ul id="graph-settings-themes" class="f-dropdown">
+                            <li ng-repeat="(themeKey, themeName) in availableThemes" ng-class="themeKey === board.settings.theme? 'active': ''"><a href="#" ng-click="board.settings.theme = themeKey">{{themeName}}</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <button type="button" class="small button expand secondary dropdown" dropdown-toggle="#graph-settings-transitionStyles">
+                            <i class="fa fa-font"></i> Transition Style</a>
+                        </button>
+                        <ul id="graph-settings-transitionStyles" class="f-dropdown">
+                            <li ng-repeat="transitionStyleName in availableTransitionStyles" ng-class="$index === board.settings.transitionStyle? 'active': ''"><a href="#" ng-click="board.settings.transitionStyle = $index; board.visualizations.update()">{{transitionStyleName}}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="text-subheading">
+                    Status
+                </div>
+                <div class="row full">
+                    <div class="small-12 columns text-subheading-status" ng-class="{'bg-color-valid': graph.isValid(), 'bg-color-invalid': !graph.isValid()}" style="text-align:center">
+                        Graph is {{!graph.isValid()?'in':''}}valid
+                    </div>
+                </div>
+                <div class="text-subheading-flush">
+                    <div class="row full">
+                        <div class="small-6 columns bg-color-gray1 text-subheading-status text">
+                             <ng-pluralize count="graph.getNodes().items.length"
+                                            when="{'0': 'No nodes',
+                                                'one': '1 node',
+                                                'other': '{} nodes'}">
+                            </ng-pluralize>
+                        </div>
+                        <div class="small-6 columns bg-color-gray1 text-subheading-status">
+                            <ng-pluralize count="graph.getEdges().items.length"
+                                            when="{'0': 'No edges',
+                                                'one': '1 edge',
+                                                'other': '{} edges'}">
+                            </ng-pluralize>
+                        </div>
+                    </div>
+                </div>
+            </tab>
+            <tab>
+                <tab-heading tooltip="Quick Input Test" tooltip-placement="bottom" tooltip-append-to-body="true">
+                    <i class="fa fa-list"></i>
+                </tab-heading>
+                <div class="text-heading">
+                    Quick Input Test
+                </div>
+                <div class="content">
+                    <form name="testInputsForm" jsflap-test-inputs="">
+                        <div class="text-subheading-flush">
+                            <div class="row full">
+                                <div class="small-4 columns bg-color-valid text-subheading-status">
+                                    {{resultTotals[1]}} Accepted
+                                </div>
+                                <div class="small-4 columns bg-color-invalid text-subheading-status">
+                                    {{resultTotals[0]}} Rejected
+                                </div>
+                                <div class="small-4 columns bg-color-gray1 text-subheading-status">
+                                    {{resultTotals[2]}} Unknown
+                                </div>
+                            </div>
+                        </div>
+                        <label ng-repeat="testInput in testInputs" ng-class="(testInput.result === true || testInput.result === false) ?(testInput.result?'accepted':'rejected'):''">
+                            <input type="text" name="{{$index}}" ng-model="testInput.inputString" ng-trim="false" jsflap-test-input="" placeholder="Enter test string here" autocomplete="off">
+                            <div class="testInputInfo" ng-show="hasOutputString"><strong>&rarr;</strong> {{testInput.outputString}}</div>
+                            <div class="testInputInfo" ng-show="testInput.error !== ''"><strong>Error:</strong> {{testInput.error}}</div>
+                        </label>
+                        <a class="newTestInput" href="#" ng-click="addTestInput()">Enter test string here</a>
+                    </form>
+                </div>
+            </tab>
+            <tab>
+                <tab-heading tooltip="Tools" tooltip-placement="bottom" tooltip-append-to-body="true">
+                    <i class="fa fa-wrench"></i>
+                </tab-heading>
+                <div class="text-heading">
+                    Tools
+                </div>
+                <div class="text-subheading">
+                    General Tools
+                </div>
+                <ul class="stack even-1 button-group">
+                    <li>
+                        <button type="button" class="small button expand secondary" ng-click="board.reindexNodeNames()">
+                            <i class="fa fa-fw fa-list-ol"></i> Re-index node labels
+                        </button>
+                    </li>
+                </ul>
+            </tab>
+            <tab>
+                <tab-heading tooltip="Simulate" tooltip-placement="bottom" tooltip-append-to-body="true">
+                    <i class="fa fa-play"></i>
+                </tab-heading>
+                <div class="text-heading">
+                    Simulate
+                </div>
+                <div class="text-subheading">
+                    Coming Soon!
+                </div>
+            </tab>
+        </tabset>  
+    </section>
+</div>
+
+<div jsflap-board-context-menu="">
+</div>
+<script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="vendor/mm-foundation-tpls-0.5.1.min.js"></script>
+<script src="dist/js/jsflap.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-67654300-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<script>
+    // Check for the various File API support.
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+      //do your stuff!
+    } else {
+      alert('The File APIs are not fully supported by your browser.');
+    }
+</script>
+
+</body>
+</html>
