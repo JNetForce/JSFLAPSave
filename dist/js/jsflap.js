@@ -443,7 +443,7 @@
                 var src = "data:text/plain;base64," + btoa(unescape(encodeURIComponent(self.board.toJSON())));
 
                 var a = document.createElement("a");
-                //a.download = ($scope.graphMeta.title? $scope.graphMeta.title: "graph") + ".json";
+                a.download = ($scope.graphMeta.title? $scope.graphMeta.title: "graph") + ".json";
                 a.href = src;
                 a.click();
             };
@@ -1571,44 +1571,81 @@ var jsflap;
                 var bounds = this.getBounds();
                 var minX = bounds.minX, maxX = bounds.maxX, minY = bounds.minY, maxY = bounds.maxY;
                 var offsetPoint = new jsflap.Point.IMPoint(minX, minY);
-                JSONData += '{Graph : [\n'
+                JSONData += '{Graph : {\n'
 
-                JSONData += '\tNodes : [\n'
+                var hasPassed = false;
+                var numNodes = 0;
+                var nodeData = '';
                 this.visualizations.nodes.forEach(function (node) {
+                    numNodes += 1;
                     var pos = node.position.getMPoint().subtract(offsetPoint).round();
-                    JSONData += '\t\t{\n'
-                    JSONData += '\t\tName : ' + node.model.label + '\n'
-                    JSONData += '\t\tXCoor : ' + pos.x + '\n';
-                    JSONData += '\t\tYCoor : ' + pos.y + '\n';
-                    if (node.model.final) {
-                        JSONData += '\t\tFinal : True\n';
+                    if (hasPassed) {
+                        nodeData += ', \n';
                     } else {
-                        JSONData += '\t\tFinal : False\n';
+                        nodeData += '\tNodes : [\n';
+                    }
+                    nodeData += '\t\t{\n'
+                    nodeData += '\t\tName : ' + node.model.label + ', \n'
+                    nodeData += '\t\tXCoor : ' + pos.x + ', \n';
+                    nodeData += '\t\tYCoor : ' + pos.y + ', \n';
+                    if (node.model.final) {
+                        nodeData += '\t\tFinal : true, \n';
+                    } else {
+                        nodeData += '\t\tFinal : false, \n';
                     }
                     if (node.model.initial) {
-                        JSONData += '\t\tInitial : True\n';
+                        nodeData += '\t\tInitial : true, \n';
                     } else {
-                        JSONData += '\t\tInitial : False\n';
+                        nodeData += '\t\tInitial : false, \n';
                     }
-                    JSONData += '\t\t};\n';
+                    nodeData += '\t\t}';
+                    hasPassed = true;
                 }); 
-                JSONData += '\t];\n';
-
-                JSONData += '\tEdges : [\n';
+                if (hasPassed) {
+                    nodeData += '\n\t];\n';
+                }
+                JSONData += '\tnumNodes : ' + numNodes.toString() + ';\n';
                 
+
+                
+                hasPassed = false;
+                var numEdges = 0;
+                var edgeData = '';
                 this.visualizations.edges.forEach(function (edge) {
-                    JSONData += '\t\t{\n'
-                    JSONData += '\t\tStart Node : ' + edge.fromModel + '\n';
-                    JSONData += '\t\tEnd Node : ' + edge.toModel.label + '\n';
+                    numEdges += 1
+                    if (hasPassed) {
+                        edgeData += ', \n'
+                    } else {
+                        edgeData += '\tEdges : [\n';
+                    }
+                    edgeData += '\t\t{\n'
+                    edgeData += '\t\tStart Node : ' + edge.fromModel + ', \n';
+                    edgeData += '\t\tEnd Node : ' + edge.toModel.label + ', \n';
                     edge.models.items.forEach(function (edgeModel) {
-                        JSONData += '\t\tReadValue : ' + edgeModel.transition.toString() + '\n';
+                        edgeData += '\t\tReadValue : ' + edgeModel.transition.toString() + ', \n';
                     });
-                    JSONData += '\t\t};\n'
+                    edgeData += '\t\t}';
+                    hasPassed = true;
                 });
-                JSONData += '\t];\n'
-                JSONData += ']}\n'
-                return JSONData
+                if (hasPassed) {
+                    edgeData += '\n\t];\n';
+                }
+                JSONData += '\tnumEdges : ' + numEdges.toString() + ';\n';
+                JSONData += nodeData;
+                JSONData += edgeData;
+                JSONData += '}\n';
+                return JSONData;
             };
+            Board.prototype.upload = function(nodeL, edgeL) {
+                var nodeL = this.graph.getNodes().items;                
+                board = board.setNewGraph();
+                alert(nodeL);
+                for (var i = 0; i < nodeL.length; i++) {
+                    this.graph.removeNode(nodeL[i]);
+                    alert("Done");
+                }
+                return "Hec Yeah";
+            }
             return Board;
         })();
         _Board.Board = Board;

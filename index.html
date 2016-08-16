@@ -126,7 +126,7 @@
             </li>
             -->
             <li>
-                <input type="file" id="fileinput" accept='.json' />
+                <input type="file" id="fileinput" accept='.json' style='visibility: hidden;'/>
                 <script type="text/javascript">
                   function readSingleFile(evt) {
                     //Retrieve the first (and only!) File from the FileList object
@@ -135,26 +135,9 @@
                     if (f) {
                         var r = new FileReader();
                         r.onload = function(e) { 
-                            alert("Hello")
+                            //alert("Hello");
                             var contents = e.target.result;
-                            contents = contents.split('\n');
-                            for(var i = 0;i < contents.length;i++){
-                                var parseGraph = false;
-                                var parseNode = false;
-                                var parseEdge = false;
-                                if (contents[i].includes("Graph")) {
-                                    parseGraph = true;
-                                    alert("Graph");
-                                }
-                                if (parseGraph && contents[i].includes("Node") && !contents.includes("Edge")) {
-                                    parseNode = true;
-                                    alert("Node");
-                                }
-                                if (parseGraph && !contents[i].includes("Node") && contents.includes("Edge")) {
-                                    parseEdge = true;
-                                    alert("Edge");
-                                }
-                            }
+                            parseGraph(contents);
                         }
                         r.readAsText(f);
                     } else { 
@@ -337,17 +320,80 @@
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="vendor/mm-foundation-tpls-0.5.1.min.js"></script>
 <script src="dist/js/jsflap.js"></script>
-<script>
+<!-- <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-67654300-1', 'auto');
-  ga('send', 'pageview');
+  //ga('create', 'UA-67654300-1', 'auto');
+  //ga('send', 'pageview');
 
+</script> -->
+<script type="text/javascript">
+function parseGraph(contents) {
+    alert("Hi");
+    contentL = contents.split('\n');
+    if (contentL[0].includes('Graph') && contentL.length >= 4) { 
+        var numNodeFound = false;
+        var numEdgeFound = false;
+        if (contentL[1].includes("numNodes")) {
+            var numNode = contentL[1].split(':');
+            numNode = numNode[1].replace(';', '');
+            numNode = parseInt(numNode);
+            numNodeFound = true;
+            alert(numNode);
+        }
+        if (contentL[2].includes("numEdges")) {
+            var numEdge = contentL[2].split(':');
+            numEdge = numEdge[1].replace(';', '');
+            numEdge = parseInt(numEdge);
+            numEdgeFound = true;
+            alert(numEdge);
+        }
+        var currNode = 0;
+        var endIndex = 4;
+        while( numNodeFound && currNode < numNode) {
+            nodeName = contentL[endIndex + 1].split(':')[1].replace(',', '');
+            nodeXCoor = contentL[endIndex + 2].split(':')[1].replace(',', '');
+            nodeYCoor = contentL[endIndex + 3].split(':')[1].replace(',', '');
+            nodeFinal = contentL[endIndex + 4].split(':')[1].replace(',', '');
+            nodeInitial = contentL[endIndex + 5].split(':')[1].replace(',', '');
+            endIndex += 7
+            // alert(nodeName)
+            // alert(nodeXCoor)
+            // alert(nodeYCoor)
+            // alert(nodeFinal)
+            // alert(nodeInitial)
+
+            currNode++;
+        }
+
+        var currEdge = 0;
+        if (endIndex > 4) {
+            var startIndex = endIndex + 2;
+        } else {
+            var startIndex = endIndex;
+        }
+        while ( numNodeFound &&  numEdgeFound && currEdge < numEdge ) {
+            //alert("Yo")
+            edgeStartNode = contentL[startIndex + 1].split(':')[1].replace(',', '');
+            edgeEndNode = contentL[startIndex + 2].split(':')[1].replace(',', '');
+            edgeReadVal = contentL[startIndex + 3].split(':')[1].replace(',', '');
+            startIndex += 5
+            // alert(edgeStartNode);
+            // alert(edgeEndNode);
+            // alert(edgeReadVal);
+            currEdge++;
+        }
+        alert("Heck Yeah")
+
+        alert(board.upload( [], []))
+
+        alert("Hell yeah");
+    }
+}
 </script>
-
 <script>
     // Check for the various File API support.
     if (window.File && window.FileReader && window.FileList && window.Blob) {
