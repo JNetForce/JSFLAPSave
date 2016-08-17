@@ -1,0 +1,685 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"path",
+				"path"
+			],
+			[
+				"not",
+				"notStartNode"
+			],
+			[
+				"pathWit",
+				"pathWithoutEdge"
+			],
+			[
+				"avaiable",
+				"availableEdgeL"
+			],
+			[
+				"lo",
+				"lowerBoundWithEdge"
+			],
+			[
+				"l",
+				"lowerBoundWithEdge"
+			],
+			[
+				"WOEdgeL",
+				"WOEdgeL"
+			],
+			[
+				"distanceB",
+				"getDistanceBetweenPokeStops"
+			],
+			[
+				"html",
+				"htmlPretty"
+			],
+			[
+				"styl",
+				"styleUrl"
+			],
+			[
+				"Style",
+				"StyleMap"
+			],
+			[
+				"Icon",
+				"IconStyle"
+			],
+			[
+				"icon",
+				"IconStyle"
+			],
+			[
+				"prett",
+				"prettyRoot"
+			],
+			[
+				"bru",
+				"bruteForce"
+			],
+			[
+				"poke",
+				"pokeList"
+			],
+			[
+				"genetic",
+				"geneticAlgorithmTSP"
+			],
+			[
+				"dict",
+				"dictIndex"
+			],
+			[
+				"get",
+				"getPathLength"
+			],
+			[
+				"distance",
+				"distanceBetweenPoints"
+			],
+			[
+				"effie",
+				"efficientIndex"
+			],
+			[
+				"effi",
+				"efficientIndex"
+			],
+			[
+				"pat",
+				"pathEfficiency"
+			],
+			[
+				"values",
+				"valuesToExclude"
+			],
+			[
+				"dist",
+				"distDict"
+			],
+			[
+				"val",
+				"valuesToExclude"
+			],
+			[
+				"min",
+				"minEdgeNum"
+			],
+			[
+				"value",
+				"value_to_remove"
+			],
+			[
+				"dis",
+				"distDict"
+			],
+			[
+				"list",
+				"listOfCoors"
+			],
+			[
+				"end",
+				"endPoint"
+			],
+			[
+				"m_per",
+				"m_per_deg_lon"
+			],
+			[
+				"Element",
+				"ElementTree"
+			],
+			[
+				"pras",
+				"parseStateMachine"
+			],
+			[
+				"S",
+				"S"
+			],
+			[
+				"re",
+				"restOfFile"
+			],
+			[
+				"y",
+				"y"
+			],
+			[
+				"c",
+				"cities"
+			],
+			[
+				"five",
+				"fiveDists"
+			],
+			[
+				"act",
+				"actCompRatio"
+			],
+			[
+				"tot",
+				"totLength"
+			],
+			[
+				"file",
+				"filesize"
+			],
+			[
+				"fil",
+				"filesize"
+			],
+			[
+				"compress",
+				"compressedTextLength"
+			],
+			[
+				"encodin",
+				"encodingDict"
+			],
+			[
+				"ec",
+				"encodingDict"
+			],
+			[
+				"cache",
+				"spamCache"
+			],
+			[
+				"top",
+				"topNmatches"
+			],
+			[
+				"wor",
+				"worstWord"
+			],
+			[
+				"d",
+				"d"
+			],
+			[
+				"refDate",
+				"refDate"
+			],
+			[
+				"birth",
+				"birthcounter"
+			],
+			[
+				"day",
+				"day"
+			],
+			[
+				"to",
+				"tomorrow"
+			],
+			[
+				"is",
+				"isLeapYear"
+			],
+			[
+				"bot",
+				"bottomBelow"
+			],
+			[
+				"sell",
+				"sellDay"
+			],
+			[
+				"mini",
+				"minimumPrice"
+			],
+			[
+				"L",
+				"L"
+			],
+			[
+				"stand",
+				"standardDeviation"
+			],
+			[
+				"total",
+				"totalVariance"
+			],
+			[
+				"ave",
+				"avgPrice"
+			],
+			[
+				"aver",
+				"averagePrice"
+			],
+			[
+				"dar",
+				"dartHits"
+			],
+			[
+				"throw",
+				"throwDart"
+			],
+			[
+				"num",
+				"numColors"
+			],
+			[
+				"m",
+				"MAXITER"
+			],
+			[
+				"max",
+				"MAXITER"
+			],
+			[
+				"X",
+				"XMAX"
+			],
+			[
+				"floa",
+				"floatMin"
+			],
+			[
+				"scal",
+				"scaleAnyAmount"
+			],
+			[
+				"new",
+				"new_Pix"
+			],
+			[
+				"flip",
+				"flipVert"
+			],
+			[
+				"flipVert",
+				"flipvert"
+			],
+			[
+				"marko",
+				"markvocModelImmortal"
+			],
+			[
+				"N",
+				"N"
+			],
+			[
+				"numToB",
+				"numToBalancedTernary"
+			],
+			[
+				"balanced",
+				"balancedTernaryToNum"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Java/Ant.sublime-build",
+					""
+				],
+				[
+					"Packages/Java/JavaC.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Java/Ant.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 544.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/cssummer16/Desktop/pokestop/TravellingPokemonTrainerProblem/geneticAlgorithm.py",
+		"/Users/cssummer16/Desktop/pokestop/TravellingPokemonTrainerProblem/BruteForce.py",
+		"/Users/cssummer16/Desktop/pokestop/TravellingPokemonTrainerProblem/traveling-salesman/Branch/Graph.py",
+		"/Users/cssummer16/Desktop/pokestop/TravellingPokemonTrainerProblem/Optimal Path - All PokeStops (1).kml",
+		"/Users/cssummer16/Desktop/pokestop/TravellingPokemonTrainerProblem/\"\"\"",
+		"/Users/cssummer16/Desktop/pokestop/minDist.py",
+		"/Users/cssummer16/Desktop/pokestop/pokestopDataReaderv2.py",
+		"/Users/cssummer16/Desktop/cs_solutions/JSFLAP/StateMachine.py",
+		"/Users/cssummer16/Desktop/pokestop/pokestopDataReader.py",
+		"/Users/cssummer16/Desktop/untitled.py",
+		"/Users/cssummer16/Desktop/cs_solutions/CS5_Black/HW4/hw4pr2.py",
+		"/Users/cssummer16/anaconda/lib/python3.5/site-packages/ebcli/core/io.py",
+		"/Users/cssummer16/Desktop/cs_solutions/CS5_Green/hw11/Shapes.py",
+		"/Users/cssummer16/Desktop/webdev/wekk1.html",
+		"/Users/cssummer16/Desktop/wekk1.html",
+		"/Users/cssummer16/Desktop/JSFLAP Site/jsflap-1/dist/css/jsflap.css",
+		"/Users/cssummer16/Desktop/JSFLAP Site/jsflap-1/bower_components/angular/.bower.json",
+		"/Users/cssummer16/Desktop/JSFLAP Site/jsflap-1/bower_components/angular/angular.js",
+		"/Users/cssummer16/Desktop/JSFLAP Site/jsflap-1/src/Point/IMPoint.ts",
+		"/Users/cssummer16/Desktop/JSFLAP Site/jsflap-1/src/Point/IPoint.ts",
+		"/Users/cssummer16/Desktop/JSFLAP Site/jsflap-1/src/Point/MPoint.ts",
+		"/Users/cssummer16/Desktop/JSFLAP Site/jsflap-1/src/Transition/ITransitionPart.ts",
+		"/Users/cssummer16/Desktop/JSFLAP Site/jsflap-1/src/Machine/FAMachine.ts",
+		"/Users/cssummer16/Desktop/JSFLAP Site/jsflap-issue-2-saving/index.html",
+		"/Users/cssummer16/Desktop/cs_solutions/JSFLAP/JSFLAP2JFLAP.py",
+		"/Users/cssummer16/Desktop/cs_solutions/JSFLAP/JFFWriterv2.py",
+		"/Users/cssummer16/Desktop/cs_solutions/CS5_Black/HW12/hw12jflap/extra3.jff",
+		"/Users/cssummer16/Desktop/cs_solutions/JSFLAP/div7jflap.jff",
+		"/Users/cssummer16/Desktop/cs_solutions/JSFLAP/JSFLAPConverter.py",
+		"/Users/cssummer16/Downloads/Untitled Graph 1 (2).tex",
+		"/Users/cssummer16/Desktop/CSSummerStaff/JSFLAP/JSFLAPConverter.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/JSFLAP/JFLAPWriter",
+		"/Users/cssummer16/Desktop/CSSummerStaff/JSFLAP/JSFLAPReader.py",
+		"/Users/cssummer16/Desktop/JSFLAPReader.py",
+		"/Users/cssummer16/Desktop/Project/helloWorld.py",
+		"/Users/cssummer16/Downloads/Untitled Graph 1 (1).tex",
+		"/Users/cssummer16/Desktop/CS5/Week 8/hw8pr1/cs5png.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Black/HW8/hw8pr1/hw8pr1.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/Test Files/CS5BTests/hw8tests/hw8pr1tests.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Black/HW10/shakespeare.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Black/HW10/hw10pr3.py",
+		"/Users/cssummer16/Desktop/helloWorld.py",
+		"/Users/cssummer16/Desktop/hello",
+		"/Users/cssummer16/Desktop/CS5BTests/hw8tests/hw8pr1.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Gold/python3_hw8_solutions/hw8pr1/cs5png.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Gold/python3_hw8_solutions/hw8pr1/hw8pr1.py",
+		"/Users/cssummer16/Desktop/CS5BTests/hw4tests/hw4pr2.py",
+		"/Users/cssummer16/Desktop/CS5BTests/hw4tests/hw4pr2tests.py",
+		"/Users/cssummer16/Desktop/CS5BTests/hw4tests/hw4pr4tests.py",
+		"/Users/cssummer16/Desktop/CS5BTests/hw2tests/hw2pr4tests.py",
+		"/Users/cssummer16/Desktop/CS5BTests/hw3tests/hw3pr4.py",
+		"/Users/cssummer16/Desktop/CS5BTests/hw3tests/hw3pr3.py",
+		"/Users/cssummer16/Desktop/CS5BTests/hw10tests/hw10pr3tests.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Black/HW11/hw11pr1 starter/bounce.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Black/HW11/hw11pr2.py",
+		"/Users/cssummer16/Desktop/CS5BTests/hw3tests/hw3pr2.py",
+		"/Users/cssummer16/Desktop/CS5BTests/hw3tests/hw3pr2tests.py",
+		"/Users/cssummer16/Downloads/Untitled Graph 1.tex",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Gold/python3_hw3_solutions/hw3pr2.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw11/Shapes.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw10/fickleAnts.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw11/Matrix2.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw11/Vector.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw10/markov.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw10/Ant.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw10/Vector.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw9/showStruct.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw9/getStruct.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw9/pol.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw9/rna.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw8/humanEvolution.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw8/drawTrees2.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw8/drawTrees1.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw6_7/fractalTree2.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw6_7/phylogeneticTrees.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw5/align.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw5/sexChromosomeEvolution.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw5/memoizedSubset.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw5/groody.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw4/reverseTranslation.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw4/subset.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw4/morseCode.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw4/knapsack.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw4/LPS.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw4/fractal.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw3/recursion2.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw3/milk.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw3/eve.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw3/recursion.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw2/lengthToATG.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw2/lookSay.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw2/geneFinder.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw2/load.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw2/dna.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw1/hw1bonus.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw1/gcwindows.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw1/countpattern.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw1/looping.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw1/gcContent.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw1/count.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw1/ifelse.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw0/spam0.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw0/intro.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Green/hw0/first.py",
+		"/Users/cssummer16/Desktop/test.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Black/HW9/hw9pr2/compress.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Black/HW9/hw9pr2/uncompress.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Black/HW9/hw9pr2/untitled.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Black/HW4/hw4pr2.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Gold/python3_hw8_solutions/hw8pr2.py",
+		"/Users/cssummer16/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Black/HW4/hw4pr4.py",
+		"/Users/cssummer16/Desktop/CS5 Gold/Week 4/hw4pr4.py",
+		"/Users/cssummer16/Desktop/CS5/cs5-geoff/lectures/billiard_bounce.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Black/HW3/hw2pr2.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Black/HW3/hw3pr2_actual.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Gold/python3_hw10_solutions/hw10pr3.py",
+		"/Users/cssummer16/Desktop/CSSummerStaff/CS5_Gold/python3_hw10_solutions/hw10pr2.py",
+		"/Users/cssummer16/Desktop/CS5/cs5gold_all_weeks/2015_week_10_11/hw10pr2_sols_old.py",
+		"/Users/cssummer16/Desktop/CS5 Gold/Week 10/hw10pr1/hw10pr1.py",
+		"/Users/cssummer16/Desktop/CS5 Gold/Week 8/hw8pr4.py",
+		"/Users/cssummer16/Desktop/CS5 Gold/Week 8/hw8pr3.py",
+		"/Users/cssummer16/Desktop/CS5 Gold/Week 4/hw8pr2.py",
+		"/Users/cssummer16/Downloads/hw8pr1/hw8pr1.py",
+		"/Users/cssummer16/Downloads/image_extra_python3/cs5png.py",
+		"/Users/cssummer16/Desktop/hw10pr3 CSBLACK",
+		"/Users/cssummer16/Desktop/myImmortal.py",
+		"/Users/cssummer16/Desktop/CS5 Gold/Week 4/hw4pr2.py"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"save",
+			"inEdges",
+			"    \n",
+			"*\n",
+			"):",
+			"cluster",
+			"math",
+			"untitled",
+			"item",
+			":\n",
+			"Quadrangle",
+			"node",
+			"toString",
+			"sys",
+			"codecs",
+			"ast",
+			"')",
+			"print ",
+			")\n",
+			"print ",
+			"'))",
+			"height",
+			"input",
+			"print(",
+			"print",
+			"print ",
+			"None",
+			"minPrice",
+			"print ",
+			":]"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"kmlPokeDict",
+			"print("
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.doc":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 283.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 353.0
+	},
+	"pinned_build_system": "",
+	"project": "index.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Desktop/pokestop/pokestopDataReader.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 97.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -61,10 +61,11 @@
                     <li has-dropdown>
                         <a href="#"><i class="fa fa-share-square-o fa-fw"></i> Export...</a>
                         <ul top-bar-dropdown>
-                            <li><a ng-click="saveToImage()" href=""><i class="fa fa-picture-o fa-fw"></i> PNG Image</a></li>
-                            <li><a ng-click="saveToLaTeX()" href=""><i class="fa fa-file-code-o fa-fw"></i> LaTeX</a></li>
-                            <li><a ng-click="saveToAutomatonDefinition()" href=""><i class="fa fa-file-text-o fa-fw"></i> Automaton Definition</a></li>
-                            <li><a ng-click="saveToJSON()" href=""><i class="fa fa-file-text-o fa-fw"></i> JSON</a></li>
+                            <li><a ng-click="saveToImage()" href=""><i class="fa fa-picture-o fa-fw"></i>  PNG Image</a></li>
+                            <li><a ng-click="saveToLaTeX()" href=""><i class="fa fa-file-code-o fa-fw"></i>  LaTeX</a></li>
+                            <li><a ng-click="saveToAutomatonDefinition()" href=""><i class="fa fa-file-text-o fa-fw"></i>  Automaton Definition</a></li>
+                            <li><a ng-click="saveToJSON()" href=""><i class="fa fa-file-text-o fa-fw"></i>  JSON</a></li>
+                            <li><a ng-click="saveToJFLAP()" href=""><i class = "fa fa-caret-right"></i><i class = "fa fa-circle-thin"></i> JFLAP</a></li>
                         </ul>
                     </li>
                     <li has-dropdown>
@@ -332,7 +333,7 @@
 </script> -->
 <script type="text/javascript">
 function parseGraph(contents) {
-    alert("Hi");
+    console.log("Parse Graph Start");
     contentL = contents.split('\n');
     if (contentL[0].includes('Graph') && contentL.length >= 4) { 
         var numNodeFound = false;
@@ -342,14 +343,14 @@ function parseGraph(contents) {
             numNode = numNode[1].replace(';', '');
             numNode = parseInt(numNode);
             numNodeFound = true;
-            alert(numNode);
+            console.log(numNode);
         }
         if (contentL[2].includes("numEdges")) {
             var numEdge = contentL[2].split(':');
             numEdge = numEdge[1].replace(';', '');
             numEdge = parseInt(numEdge);
             numEdgeFound = true;
-            alert(numEdge);
+            console.log(numEdge);
         }
         var currNode = 0;
         var endIndex = 4;
@@ -386,9 +387,9 @@ function parseGraph(contents) {
             // alert(edgeReadVal);
             currEdge++;
         }
-        alert("Heck Yeah")
+        console.log("Heck Yeah")
 
-        alert(board.upload( [], []))
+        console.log(board.upload( [], []))
 
         alert("Hell yeah");
     }

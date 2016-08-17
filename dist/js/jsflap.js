@@ -448,6 +448,15 @@
                 a.click();
             };
 
+            $scope.saveToJFLAP = function() {
+                var src = "data:text/plain;base64," + btoa(unescape(encodeURIComponent(self.board.toJFLAP())));
+
+                var a = document.createElement("a");
+                a.download = ($scope.graphMeta.title? $scope.graphMeta.title: "graph") + ".jff";
+                a.href = src;
+                a.click(); 
+            }
+
             // For easy debugging
             window.graph = this.graph;
             $scope.graph = this.graph;
@@ -829,6 +838,8 @@ var jsflap;
                     theme: "modern",
                     transitionStyle: 1 /* PERPENDICULAR */
                 };
+                console.log(graph)
+                console.log($rootScope)
                 /**
                  * The function to call after the board has been updated
                  */
@@ -1371,6 +1382,7 @@ var jsflap;
              */
             Board.prototype.removeNode = function (nodeV) {
                 // Need to copy the edges because when the edges are deleted, the indexing gets messed up
+                alert("Hi")
                 var _this = this;
                 var toEdges = nodeV.model.toEdges.items.slice(0), fromEdges = nodeV.model.fromEdges.items.slice(0), deleteFn = function (edgeModel) {
                     _this.graph.removeEdge(edgeModel);
@@ -1571,7 +1583,7 @@ var jsflap;
                 var bounds = this.getBounds();
                 var minX = bounds.minX, maxX = bounds.maxX, minY = bounds.minY, maxY = bounds.maxY;
                 var offsetPoint = new jsflap.Point.IMPoint(minX, minY);
-                JSONData += '{Graph : {\n'
+                JSONData += '{board : {\n'
 
                 var hasPassed = false;
                 var numNodes = 0;
@@ -1582,7 +1594,7 @@ var jsflap;
                     if (hasPassed) {
                         nodeData += ', \n';
                     } else {
-                        nodeData += '\tNodes : [\n';
+                        nodeData += '\tNodeL : [\n';
                     }
                     nodeData += '\t\t{\n'
                     nodeData += '\t\tName : ' + node.model.label + ', \n'
@@ -1616,10 +1628,10 @@ var jsflap;
                     if (hasPassed) {
                         edgeData += ', \n'
                     } else {
-                        edgeData += '\tEdges : [\n';
+                        edgeData += '\tEdgeL : [\n';
                     }
                     edgeData += '\t\t{\n'
-                    edgeData += '\t\tStart Node : ' + edge.fromModel + ', \n';
+                    edgeData += '\t\tStart Node : ' + edge.fromModel.label + ', \n';
                     edgeData += '\t\tEnd Node : ' + edge.toModel.label + ', \n';
                     edge.models.items.forEach(function (edgeModel) {
                         edgeData += '\t\tReadValue : ' + edgeModel.transition.toString() + ', \n';
@@ -1636,14 +1648,144 @@ var jsflap;
                 JSONData += '}\n';
                 return JSONData;
             };
-            Board.prototype.upload = function(nodeL, edgeL) {
-                var nodeL = this.graph.getNodes().items;                
-                board = board.setNewGraph();
-                alert(nodeL);
-                for (var i = 0; i < nodeL.length; i++) {
-                    this.graph.removeNode(nodeL[i]);
-                    alert("Done");
+            Board.prototype.toJFLAP = function() {
+                
+                var jffData = '';
+
+                var bounds = this.getBounds();
+
+                var minX = bounds.minX,
+                    maxX = bounds.maxX,
+                    minY = bounds.minY,
+                    maxY = bounds.maxY;
+
+                var offsetPoint = new jsflap.Point.IMPoint(minX, minY);
+
+                stateData = '';
+
+                var nodeCounter = 0;
+                var dictionary = {};
+                this.visualizations.nodes.forEach(function (node) {
+                    var pos = node.position.getMPoint().subtract(offsetPoint).round();
+                    if (this.graph.shortName === 'FA') {
+                        stateData += '\t\t<state id="' + nodeCounter + '" name="' + node.model.label + '">\n'
+                        stateData += '\t\t\t<x>' + pos.x + '</x>\n'
+                        stateData += '\t\t\t<y>' + pos.y + '</y>\n'
+
+                        dictionary[node.model.label] = nodeCounter;
+                        if(node.model.initial) {
+                            stateData += '\t\t\t<initial/>\n';
+                        } 
+
+                        if(node.model.final) {
+                            stateData += '\t\t\t<final/>\n';
+                        }
+                        stateData += '\t\t</state>\n';
+                    } else  {
+                        stateData += '\t\t<block id="' + nodeCounter + '" name="' + node.model.label + '">\n'
+                        stateData += '\t\t\t<tag>Machine' + nodeCounter + '</tag>' 
+                        stateData += '\t\t\t<x>' + pos.x + '</x>\n'
+                        stateData += '\t\t\t<y>' + pos.y + '</y>\n'
+
+                        dictionary[node.model.label] = nodeCounter;
+                        if(node.model.initial) {
+                            stateData += '\t\t\t<initial/>\n';
+                        } 
+
+                        if(node.model.final) {
+                            stateData += '\t\t\t<final/>\n';
+                        }
+
+                        stateData += '\t\t</block>\n';
+                    }
+
+                    nodeCounter++;
+                });
+
+
+                var edgeData = '';
+                this.visualizations.edges.forEach(function (edge) {
+                    edgeData += '\t\t<transition>\n'
+                    edgeData += '\t\t\t<from>' + dictionary[edge.fromModel.label] + '</from>\n'
+                    edgeData += '\t\t\t<to>' + dictionary[edge.toModel.label] + '</to>\n'
+
+
+                    edge.models.items.forEach(function (edgeModel) {
+                        edgeReadVal = edgeModel.transition.toString();
+                        if (this.graph.shortName === 'FA') {
+                            if (edgeReadVal === jsflap.LAMBDA) {
+                                edgeData += '\t\t\t<read/>\n'
+                            } else {
+                            edgeData += '\t\t\t<read>' + edgeReadVal + '</read>\n'
+                            }
+                        } else {
+                            alert()
+                            edgeRead = edgeReadVal.splice(0,1);
+                            edgeWrite = edgeReadVal.splice(2,3);
+                            edgeMove = edgeReadVal.splice(4,5);
+
+                            if (edgeRead === jsflap.BLANK) {
+                                edgeData += '\t\t\t<read/>\n'
+                            } else {
+                                edgeData += '\t\t\t<read>' + edgeRead + '</read>\n'
+                            }
+                            edgeData += '\t\t\t<write>' + edgeWrite + '</write>\n'
+                            edgeData += '\t\t\t<move>' + edgeMove + '</move>\n'
+                        }
+                    });
+
+                    edgeData += '\t\t<transition>\n'
+                });
+
+                jffData = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n'
+                jffData += '<!--Created with JFLAP 6.4.-->\n'
+                jffData += '<structure>\n'
+                if (this.graph.shortName === 'FA') {
+                    jffData += '\t<type>fa</type>\n'
+                } else {
+                    jffData += '\t<type>turing</type>\n'
                 }
+
+                jffData += '\t<automaton>\n';
+                jffData += '\t<!--The list of states.-->\n';
+                jffData += stateData;
+                jffData += '\t<!--The list of transitions.-->\n';
+                jffData += edgeData;
+
+                if (this.graph.shortName === 'TM') {
+                    jffData += '\t<!--The list of automata-->\n';
+                    for(var i = 0; i < nodeCounter; i++) {
+                        jffData += '\t\t<Machine' + i + '/>\n';
+                    }
+                }
+
+                jffData += '\t<automaton>\n';
+                jffData += '</structure>';
+
+                return jffData;
+            
+            }
+
+            Board.prototype.upload = function(nodeL, edgeL) {   
+                //this.setNewGraph()   
+                //this.Board(this.svg, this.board, this.graph, this.container)        
+                //this = board.setNewGraph();
+                //this = new Board()
+                // var bounds = this.getBounds();
+                // var minX = bounds.minX, maxX = bounds.maxX, minY = bounds.minY, maxY = bounds.maxY;
+                // var offsetPoint = new jsflap.Point.IMPoint(minX, minY);
+                this.setMode(2)
+                // this.visualizations.nodes.forEach( function (node) {
+                //     this.visualizations.removeNode(node)
+                // })
+                newNode = new jsflap.Node('q4', false)
+                this.addNode(newNode)
+                this.visualizations.addNode(newNode)
+                // nodeArr = this.visualizations.nodes.slice();
+                // nodeArr.forEach(function (node) {
+                //     console.log("hi")
+                //     this.removeNode(node)
+                // });
                 return "Hec Yeah";
             }
             return Board;
@@ -3488,6 +3630,7 @@ var jsflap;
                 newNodeLabels.on('contextmenu', function (node) { return _this.nodeContextMenu(node); });
                 newNodeLabels.on("mouseup", function (node) {
                     var event = d3.event; // Cast to any to allow which access below
+                    //alert(event.which)
                     // Only respond to left clicks
                     if (event.which != 1) {
                         return;
