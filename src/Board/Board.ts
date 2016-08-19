@@ -878,6 +878,9 @@ module jsflap.Board {
 
         public toJSON(): string {
             //Contributed by Jason Ma
+            //Creates a string in JSON format of the graph and returns it
+            //Note apparently this function is not the one called when you try to export graphs
+            //It's another function in the jsflap.js file.
             var JSONData = '';
 
             var bounds = this.getBounds();
@@ -917,6 +920,40 @@ module jsflap.Board {
             JSONData += '}';
             return JSONData;
 
+        }
+
+        public toJFLAP(): string {
+            //Contributed by Jason
+            //Creates an string for an XML file from the graph on the screen and returns its
+            var jffData = '';
+
+            var bounds = this.getBounds();
+
+            var minX = bounds.minX,
+                maxX = bounds.maxX,
+                minY = bounds.minY,
+                maxY = bounds.maxY;
+
+            var offsetPoint = new Point.IMPoint(minX, minY);
+
+            stateData = '';
+
+            var counter = 0;
+            this.visualizations.nodes.forEach((node: Visualization.NodeVisualization) => {
+                var pos = node.position.getMPoint().subtract(offsetPoint).round();
+                stateData += '\t\t<sttate id="' + counter + '" name="' + node.model.label + '">\n'
+                stateData += '\t\t\t<x>' + pos.x + '</x>\n'
+                stateData += '\t\t\t<y>' + pos.y + '</y>\n'
+
+     
+                if(node.model.initial) {
+                    stateData += '\t\t\t<initial/>\n'';
+                } 
+                if(node.model.intiial) {
+                    stateData += '\t\t\t<final/>\n'
+                }
+                stateData += '\t\t</state>\n' 
+            });
         }
 
         public toLaTeX(): string {

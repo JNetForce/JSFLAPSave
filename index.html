@@ -51,7 +51,7 @@
             <li has-dropdown>
                 <a href="#">File</a>
                 <ul top-bar-dropdown>
-                    <li><a href="/" target="_blank"><i class="fa fa-file fa-fw"></i> New</a></li>
+                    <li><a href="#" target="_blank" ng-click="loadNewGraph()"><i class="fa fa-file fa-fw"></i> New</a></li>
                     <!--<li has-dropdown>-->
                         <!--<a href="#"><i class="fa fa-folder-open fa-fw"></i> Open...</a>-->
                         <!--<ul top-bar-dropdown>-->
@@ -64,6 +64,7 @@
                             <li><a ng-click="saveToImage()" href=""><i class="fa fa-picture-o fa-fw"></i>  PNG Image</a></li>
                             <li><a ng-click="saveToLaTeX()" href=""><i class="fa fa-file-code-o fa-fw"></i>  LaTeX</a></li>
                             <li><a ng-click="saveToAutomatonDefinition()" href=""><i class="fa fa-file-text-o fa-fw"></i>  Automaton Definition</a></li>
+                            <!-- Added by Jason Ma. Calls functions to output a file in a specified format -->
                             <li><a ng-click="saveToJSON()" href=""><i class="fa fa-file-text-o fa-fw"></i>  JSON</a></li>
                             <li><a ng-click="saveToJFLAP()" href=""><i class = "fa fa-caret-right"></i><i class = "fa fa-circle-thin"></i> JFLAP</a></li>
                         </ul>
@@ -72,6 +73,8 @@
                         <a href="#"><i class = "fa fa-upload fa-fw"></i> Import...</a>
                         <ul top-bar-dropdown>
                                 <li>
+                                    <!-- Creates a fancy-ish ui for file upload using the input tag
+                                         Clicking this button triggers the file input button -->
                                     <a onclick="$('#fileinput').click()" href="">
                                     <i class = "fa fa-file-text-o fa-fw"></i> JSON</a>
                                 </li>
@@ -95,6 +98,7 @@
                 </ul>
             </li>
             <!--
+            First attemt at file input. Can ignore. This script is now located at the end
             <li>
 
             <form action='index.html' method="post" enctype="multipart/form-data">
@@ -127,6 +131,7 @@
             </li>
             -->
             <li>
+            <!-- This is the button that the import JSON button triggers. Is invisibile because it clashes with the aesthetic -->
                 <input type="file" id="fileinput" accept='.json' style='visibility: hidden;'/>
                 <script type="text/javascript">
                   function readSingleFile(evt) {
@@ -135,6 +140,7 @@
 
                     if (f) {
                         var r = new FileReader();
+                        // Calls parseGraph which reads the file for nodes/edges and rerenders it on the screen
                         r.onload = function(e) { 
                             //alert("Hello");
                             var contents = e.target.result;
@@ -333,9 +339,10 @@
 </script> -->
 <script type="text/javascript">
 function parseGraph(contents) {
+    // Currently hard coded to parse a JSON file. Will later be remade to intuitively parse files
     console.log("Parse Graph Start");
     contentL = contents.split('\n');
-    if (contentL[0].includes('Graph') && contentL.length >= 4) { 
+    if (contentL[0].includes('board') && contentL.length >= 4) { 
         var numNodeFound = false;
         var numEdgeFound = false;
         if (contentL[1].includes("numNodes")) {
@@ -366,7 +373,6 @@ function parseGraph(contents) {
             // alert(nodeYCoor)
             // alert(nodeFinal)
             // alert(nodeInitial)
-
             currNode++;
         }
 
@@ -387,9 +393,10 @@ function parseGraph(contents) {
             // alert(edgeReadVal);
             currEdge++;
         }
+        console.log("Parsed Graph")
         console.log("Heck Yeah")
-
-        console.log(board.upload( [], []))
+        console.log()
+        //console.log(board.upload([], []))
 
         alert("Hell yeah");
     }

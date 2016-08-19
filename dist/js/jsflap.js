@@ -111,9 +111,16 @@
 
                             //console.log("ENDED IN " + Math.round((t1 - t0) * 1000) / 1000 + " ms");
                         }
+                        scope.uploadGraph = function(nodeL, edgeL) {
+                            alert('yo')
+                        }
 
                         scope.testInputs = [];
 
+                        scope.loadNewGraph = function() {
+                            console.log("new:")
+                            setGraph(new jsflap.Graph.FAGraph(false))
+                        }
                         scope.addTestInput = function() {
                             scope.testInputs.push(angular.copy(inputTemplate));
                             setTimeout(function() {
@@ -1382,7 +1389,7 @@ var jsflap;
              */
             Board.prototype.removeNode = function (nodeV) {
                 // Need to copy the edges because when the edges are deleted, the indexing gets messed up
-                alert("Hi")
+                //alert("Hi")
                 var _this = this;
                 var toEdges = nodeV.model.toEdges.items.slice(0), fromEdges = nodeV.model.fromEdges.items.slice(0), deleteFn = function (edgeModel) {
                     _this.graph.removeEdge(edgeModel);
@@ -1544,6 +1551,12 @@ var jsflap;
                     maxY: maxY
                 };
             };
+            Board.prototype.clear = function() {
+                this.visualizations.edges.forEach(function (edgeV) {
+                    this.removeEdge(edgeV);
+                });
+                alert("Done")
+            }
             Board.prototype.toLaTeX = function () {
                 var texData = '';
                 var bounds = this.getBounds();
@@ -1579,6 +1592,8 @@ var jsflap;
                 return '\\documentclass[12pt]{article}\n' + '\\usepackage{tikz}\n' + '\\usetikzlibrary{arrows.meta}\n' + '\n' + '\\begin{document}\n' + '\n' + '\\begin{center}\n' + '\\resizebox{\\columnwidth}{!}{\n' + '    \\begin{tikzpicture}[y=-1, x = 1]\n' + '    \\tikzstyle{nodeLabel}+=[inner sep=0pt, font=\\large]\n' + '    \\tikzstyle{edge}+=[-{Latex[length=5, width=7]}]\n' + '    \\tikzstyle{edgeTransition}+=[draw=white, fill=white, inner sep = 1] \n' + texData + '    \\end{tikzpicture}\n' + '}\n' + '\\end{center}\n' + '\n' + '\\end{document}\n';
             };
             Board.prototype.toJSON = function() {
+                //Contributed by Jason Ma
+                //Creates a string in JSON format of the graph and returns it
                 var JSONData = '';
                 var bounds = this.getBounds();
                 var minX = bounds.minX, maxX = bounds.maxX, minY = bounds.minY, maxY = bounds.maxY;
@@ -1649,7 +1664,8 @@ var jsflap;
                 return JSONData;
             };
             Board.prototype.toJFLAP = function() {
-                
+                //Contributed by Jason
+                //Creates an string for an XML file from the graph on the screen and returns its
                 var jffData = '';
 
                 var bounds = this.getBounds();
@@ -1767,25 +1783,18 @@ var jsflap;
             }
 
             Board.prototype.upload = function(nodeL, edgeL) {   
-                //this.setNewGraph()   
-                //this.Board(this.svg, this.board, this.graph, this.container)        
-                //this = board.setNewGraph();
-                //this = new Board()
-                // var bounds = this.getBounds();
-                // var minX = bounds.minX, maxX = bounds.maxX, minY = bounds.minY, maxY = bounds.maxY;
-                // var offsetPoint = new jsflap.Point.IMPoint(minX, minY);
-                this.setMode(2)
-                // this.visualizations.nodes.forEach( function (node) {
-                //     this.visualizations.removeNode(node)
-                // })
-                newNode = new jsflap.Node('q4', false)
-                this.addNode(newNode)
-                this.visualizations.addNode(newNode)
-                // nodeArr = this.visualizations.nodes.slice();
-                // nodeArr.forEach(function (node) {
-                //     console.log("hi")
-                //     this.removeNode(node)
-                // });
+
+                this.setMode(0)
+                newNodeL = []
+                testNodeL = ["q0", "q1", "q2"]
+                testNodeL.forEach( function (node) {
+                    newNodeL.push(new jsflap.Node(node))
+                    this.graph.addNode(node)
+                    this.visualizations.addNode(node)
+                    console.log(node)
+                });
+                (alert( jsflap))
+
                 return "Hec Yeah";
             }
             return Board;
