@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="//cdn.jsdelivr.net/highlight.js/9.4.0/highlight.min.js"></script>
     <link rel="apple-touch-icon" href="/assets/icon_iphone.png">
-    
+
     <style >
         .inputfile {
             width: 0.1px;
@@ -80,7 +80,7 @@
                                 </li>
                         </ul>
                     </li>
-                    
+
                 </ul>
             </li>
             <li has-dropdown>
@@ -107,21 +107,21 @@
             <script type="text/javascript">
                   function readSingleFile(evt) {
                     //Retrieve the first (and only!) File from the FileList object
-                    var f = evt.target.files[0]; 
+                    var f = evt.target.files[0];
 
                     if (f) {
                       var r = new FileReader();
-                      r.onload = function(e) { 
+                      r.onload = function(e) {
                           var contents = e.target.result;
-                        alert( "Got the file.\n" 
+                        alert( "Got the file.\n"
                               +"name: " + f.name + "\n"
                               +"type: " + f.type + "\n"
                               +"size: " + f.size + " bytes\n"
                               + "starts with: " + contents
-                        );  
+                        );
                       }
                       r.readAsText(f);
-                    } else { 
+                    } else {
                       alert("Failed to load file");
                     }
                   }
@@ -136,21 +136,23 @@
                 <script type="text/javascript">
                   function readSingleFile(evt) {
                     //Retrieve the first (and only!) File from the FileList object
-                    var f = evt.target.files[0]; 
+                    var f = evt.target.files[0];
 
                     if (f) {
                         var r = new FileReader();
                         // Calls parseGraph which reads the file for nodes/edges and rerenders it on the screen
-                        r.onload = function(e) { 
+                        r.onload = function(e) {
                             //alert("Hello");
                             var contents = e.target.result;
                             parseGraph(contents);
                         }
                         r.readAsText(f);
-                    } else { 
+                    } else {
                         alert("Failed to load file");
                     }
                   }
+                // Attaches event listener to the file input button. This is so that the correct
+                // scripts are triggered when the field is changed(ie someone uploads a file)
                 document.getElementById('fileinput').addEventListener('change', readSingleFile);
                 </script>
             </li>
@@ -317,7 +319,7 @@
                     Coming Soon!
                 </div>
             </tab>
-        </tabset>  
+        </tabset>
     </section>
 </div>
 
@@ -342,7 +344,7 @@ function parseGraph(contents) {
     // Currently hard coded to parse a JSON file. Will later be remade to intuitively parse files
     console.log("Parse Graph Start");
     contentL = contents.split('\n');
-    if (contentL[0].includes('board') && contentL.length >= 4) { 
+    if (contentL[0].includes('board') && contentL.length >= 4) {
         var numNodeFound = false;
         var numEdgeFound = false;
         if (contentL[1].includes("numNodes")) {
