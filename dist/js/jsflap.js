@@ -1742,9 +1742,9 @@ var jsflap;
                             }
                         } else {
                             alert()
-                            edgeRead = edgeReadVal.splice(0,1);
-                            edgeWrite = edgeReadVal.splice(2,3);
-                            edgeMove = edgeReadVal.splice(4,5);
+                            edgeRead = edgeReadVal.split('/')[0];
+                            edgeWrite = edgeRead.split(';')[0];
+                            edgeMove = edgeRead.split(';')[1];
 
                             if (edgeRead === jsflap.BLANK) {
                                 edgeData += '\t\t\t<read/>\n'
