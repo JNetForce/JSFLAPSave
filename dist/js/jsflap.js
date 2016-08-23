@@ -119,6 +119,12 @@
 
                         scope.loadNewGraph = function() {
                             console.log("new:")
+                            newNodeL = []
+                            testNodeL = ["q0", "q1", "q2"]
+                            testNodeL.forEach( function (node) {
+                                newNodeL.push(new jsflap.Node(node))
+                            });
+                            alert(self.board)
                             setGraph(new jsflap.Graph.FAGraph(false))
                         }
                         scope.addTestInput = function() {
@@ -1789,11 +1795,7 @@ var jsflap;
                 testNodeL = ["q0", "q1", "q2"]
                 testNodeL.forEach( function (node) {
                     newNodeL.push(new jsflap.Node(node))
-                    this.graph.addNode(node)
-                    this.visualizations.addNode(node)
-                    console.log(node)
                 });
-                (alert( jsflap))
 
                 return "Hec Yeah";
             }

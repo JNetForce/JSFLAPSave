@@ -69,17 +69,17 @@
                             <li><a ng-click="saveToJFLAP()" href=""><i class = "fa fa-caret-right"></i><i class = "fa fa-circle-thin"></i> JFLAP</a></li>
                         </ul>
                     </li>
-                    <li has-dropdown>
+                    <!-- <li has-dropdown>
                         <a href="#"><i class = "fa fa-upload fa-fw"></i> Import...</a>
                         <ul top-bar-dropdown>
                                 <li>
-                                    <!-- Creates a fancy-ish ui for file upload using the input tag
-                                         Clicking this button triggers the file input button -->
+                                    Creates a fancy-ish ui for file upload using the input tag
+                                         Clicking this button triggers the file input button
                                     <a onclick="$('#fileinput').click()" href="">
                                     <i class = "fa fa-file-text-o fa-fw"></i> JSON</a>
                                 </li>
                         </ul>
-                    </li>
+                    </li> -->
 
                 </ul>
             </li>
@@ -96,7 +96,7 @@
                     <li><a href="#" ng-click="openHelpModal()"><i class="fa fa-question-circle"></i> Help</a></li>
                     <li><a target="_blank" href="https://github.com/bgrawi/jsflap/issues" title="Report a Bug"><i class="fa fa-bug"></i> Report a Bug</a></li>
                 </ul>
-            </li>
+            <!-- </li> -->
             <!--
             First attemt at file input. Can ignore. This script is now located at the end
             <li>
@@ -130,9 +130,9 @@
             </script>
             </li>
             -->
-            <li>
+            <!-- <li> -->
             <!-- This is the button that the import JSON button triggers. Is invisibile because it clashes with the aesthetic -->
-                <input type="file" id="fileinput" accept='.json' style='visibility: hidden;'/>
+            <!--     <input type="file" id="fileinput" accept='.json' style='visibility: hidden;'/>
                 <script type="text/javascript">
                   function readSingleFile(evt) {
                     //Retrieve the first (and only!) File from the FileList object
@@ -154,8 +154,8 @@
                 // Attaches event listener to the file input button. This is so that the correct
                 // scripts are triggered when the field is changed(ie someone uploads a file)
                 document.getElementById('fileinput').addEventListener('change', readSingleFile);
-                </script>
-            </li>
+                </script> -->
+            <!-- </li> -->
         </ul>
     </top-bar-section>
 </top-bar>
@@ -339,7 +339,7 @@
   //ga('send', 'pageview');
 
 </script> -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 function parseGraph(contents) {
     // Currently hard coded to parse a JSON file. Will later be remade to intuitively parse files
     console.log("Parse Graph Start");
@@ -398,12 +398,12 @@ function parseGraph(contents) {
         console.log("Parsed Graph")
         console.log("Heck Yeah")
         console.log()
-        //console.log(board.upload([], []))
+        console.log(loadNewGraph())
 
         alert("Hell yeah");
     }
 }
-</script>
+</script> -->
 <script>
     // Check for the various File API support.
     if (window.File && window.FileReader && window.FileList && window.Blob) {
